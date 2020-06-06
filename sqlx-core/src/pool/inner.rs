@@ -190,7 +190,7 @@ where
             let deadline = Instant::now() + self.options.connect_timeout;
 
             // this guard will prevent us from exceeding `max_size`
-            while let Some(guard) = self.try_increment_size() {
+            if let Some(guard) = self.try_increment_size() {
                 // [connect] will raise an error when past deadline
                 // [connect] returns None if its okay to retry
                 if let Some(conn) = self.connect(deadline, guard).await? {
@@ -198,6 +198,8 @@ where
                         .push(conn.into_idle().into_leakable())
                         .expect("BUG: connection queue overflow in init_min_connections");
                 }
+            } else {
+                return Ok(());
             }
         }
 

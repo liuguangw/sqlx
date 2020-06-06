@@ -28,7 +28,7 @@ mysql = [ "sha-1", "sha2", "generic-array", "num-bigint", "base64", "digest", "r
 sqlite = [ "libsqlite3-sys" ]
 tls = [ "async-native-tls" ]
 runtime-async-std = [ "async-native-tls/runtime-async-std", "async-std" ]
-runtime-tokio = [ "async-native-tls/runtime-tokio", "tokio" ]
+runtime-tokio = [ "tokio" ]
 # intended for internal benchmarking, do not use
 bench = []
 

@@ -312,11 +312,7 @@ impl MySqlConnection {
 
         // https://mathiasbynens.be/notes/mysql-utf8mb4
 
-        self_.execute(r#"
-SET sql_mode=(SELECT CONCAT(@@sql_mode, ',PIPES_AS_CONCAT,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE'));
-SET time_zone = '+00:00';
-SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;
-        "#).await?;
+        self_.execute("SET NAMES utf8").await?;
 
         Ok(self_)
     }

@@ -61,7 +61,6 @@ dependencies = [
  "async-std",
  "native-tls",
  "thiserror",
- "tokio 0.2.13",
  "url 2.1.1",
 ]
 
